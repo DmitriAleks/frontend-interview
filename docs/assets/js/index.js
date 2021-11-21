@@ -1,49 +1,45 @@
+import './../css/style.css';
+import './../css/styles.scss';
+
+const form = document.getElementById('taskForm');
 const onDomLoaded = () => {
-    const form = document.getElementById('taskForm')
-    const inputNodeList = getInputElementsFromForm(form)
-    restoreProgressFromStorage(inputNodeList)
-    handleTaskProgress()
-    form.addEventListener('change', () => {
-        saveProgressToStorage(inputNodeList)
-        handleTaskProgress()
-    })
-}
-
-/**
- * @param {Node} form
- * @return {NodeList}
- */
-const getInputElementsFromForm = form => {
-    return form.querySelectorAll('input[type="checkbox"]')
-}
-
-/**
- * @param {NodeList} inputNodeList 
- */
-const saveProgressToStorage = inputNodeList => {
-    const progressData = [].map.call(inputNodeList, node => node.checked)
-    localStorage.setItem('progress', JSON.stringify(progressData))
-}
-
-/**
- * @param {NodeList} inputNodeList 
- */
-const restoreProgressFromStorage = inputNodeList => {
-    const progressData = JSON.parse(localStorage.getItem('progress')) || []
-    if (progressData.length === inputNodeList.length) {
-        progressData.forEach((isChecked, id) => {
-            inputNodeList[id].checked = isChecked
-        })
+    const submit = document.getElementById('btn');
+    form.addEventListener('click', chekValue);
+    form.addEventListener('keyup', chekValue);
+    submit.addEventListener('click',sedValue);
+}   
+function chekValue(){
+        if(input.value === ''){
+            document.getElementById('content').classList.add('red');
+           addedV('Введите символ');
+        } else{
+            document.getElementById('content').classList.remove('red');
+            addedV('');
+        }  
+    
+ }
+ function sedValue(e){
+    e.preventDefault();
+   const ajax = new XMLHttpRequest();
+    ajax.open('GET', 'https://reqres.in/', true);
+    ajax.send();
+    ajax.addEventListener('readystatechange', function(){
+        if(ajax.status == 200){
+            addedV('Ваш заказ принят')
+        }
+    });
+ }
+ function addedV (value) {
+    const answer = document.createElement('p');
+    answer.textContent = value;  
+    if(value){
+        if(form.childNodes.length === 3) {
+       form.appendChild( answer)
     }
-}
-
-/**
- * Displays a message if the process is complete
- */
-const handleTaskProgress = () => {
-    const progressData = JSON.parse(localStorage.getItem('progress')) || []
-    const progress = progressData.filter(bool => bool)
-    document.getElementById('taskDone').textContent = progressData.length && progressData.length === progress.length ? 'Готово? Чего же вы ждёте? Скорее отправляйте нам результат! Удачи:)' : ''
-}
-
+    } else {
+        if(form.childNodes.length === 4) {
+            form.removeChild(form.lastChild)
+         }
+   }
+ }
 document.addEventListener('DOMContentLoaded', onDomLoaded)

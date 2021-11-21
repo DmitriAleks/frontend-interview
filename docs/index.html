@@ -4,74 +4,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Task</title>
 </head>
-
 <body>
-
     <h1>Тестовое задание</h1>
 
     <form id="taskForm">
-        <ol class="task__list">
-            <li>
-                <label>
-                    <input type="checkbox">
-                    Сверстать форму с полем для ввода и кнопкой как на изображении
-                </label>
-                <br>
-                <img src="./assets/img/form-desktop.jpg" alt="Form on desktop" class="task__img task__img--fluid">
-            </li>
-            <li>
-                <label>
-                    <input type="checkbox">
-                    Вид формы на мобильных устройствах
-                </label>
-                <br>
-                <img src="./assets/img/form-mobile.jpg" alt="Form on desktop" class="task__img task__img--fluid">
-            </li>
-            <li>
-                <label>
-                    <input type="checkbox">
-                    Организовать простую валидацию поля (должно быть заполнено)
-                </label>
-            </li>
-            <li>
-                <label>
-                    <input type="checkbox">
-                    При нажатии кнопки отправлять данные из формы на любой сервис (на ваше усмотрение) без перезагрузки страницы
-                </label>
-            </li>
-            <li>
-                <label>
-                    <input type="checkbox">
-                    После получения ответа вывести уведомление о результате выполнения запроса
-                </label>
-            </li>
-            <li>
-                <label>
-                    <input type="checkbox">
-                    Организовать сборку проекта при помощи Webpack с применением CSS препроцессора и оптимизацией скриптов под старые версии браузеров (SCSS, Babel)
-                </label>
-            </li>
-            <li>
-                <label>
-                    <input type="checkbox">
-                    Включить в сборку проекта (Webpack) библиотеку шрифтов font-awesome, добавить любую иконку на кнопку
-                </label>
-            </li>
-            <li>
-                <label>
-                    <input type="checkbox">
-                    Внести изменения в систему контроля версий (git)
-                </label>
-            </li>
-        </ol>
+        <div class="content" id="content">
+            <input type="text" class="input" placeholder="Ваш номер..." id="input" >
+            <button class="btn" id="btn"> <p>ЗАКАЗАТЬ <i class="fas fa-angle-right"></i></p> </button>
+        </div>
     </form>
-
-    <h2 id="taskDone"></h2>
-
-    <script src="./assets/js/index.js"></script>
 </body>
-
 </html>
